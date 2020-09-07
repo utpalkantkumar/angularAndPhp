@@ -1,0 +1,75 @@
+<div class="container">
+  <h2>Registration</h2>
+  <form class="form-horizontal" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="name">Name:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" formControlName="name">
+		<span class="text-danger"
+                                *ngIf="(registerFormControl.name.touched || submitted) && registerFormControl.name.errors?.required">
+                                 Name is required
+                            </span>
+							<div *ngIf="registerFormControl.name.errors?.maxlength ">Max Length is 10</div>
+							<span class="text-danger"
+                                *ngIf="registerFormControl.name.touched && registerFormControl.name.errors?.invalidalphabet">
+                                Name not valid,Only characters allowed
+                            </span>
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="control-label col-sm-2" for="email">Email:</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" formControlName="email">
+		<span class="text-danger"
+                                *ngIf="(registerFormControl.email.touched || submitted) && registerFormControl.email.errors?.required">
+                                Email is required
+                            </span>
+                            <span class="text-danger"
+                                *ngIf="registerFormControl.email.touched && registerFormControl.email.errors?.email">
+                                Enter a valid email address
+                            </span>
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="control-label col-sm-2" for="contact">Contact:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="contact" placeholder="Enter contact No." name="contact" formControlName="contact">
+		<span class="text-danger"
+                                *ngIf="(registerFormControl.contact.touched || submitted) && registerFormControl.contact.errors?.required">
+                                Contact number is required
+                            </span>
+<span class="text-danger"
+                                *ngIf="registerFormControl.contact.touched && registerFormControl.contact.errors?.invalidMobile">
+                                Mobile number not valid ,it should be number only , starts with 6,7,8,9 and total 10 digit
+                            </span>
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="control-label col-sm-2" for="passwrod">Password:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="passwrod" placeholder="Enter password" name="password" formControlName="password">
+		<span class="text-danger"
+                                *ngIf="(registerFormControl.password.touched || submitted) && registerFormControl.password.errors?.required">
+                                Password is required
+                            </span>
+                            <span class="text-danger"
+                                *ngIf="registerFormControl.password.touched && registerFormControl.password.errors?.invalidPassword">
+                                Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase
+                                letter and 1 number
+                            </span>
+      </div>
+    </div>
+    
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-default">Submit</button>
+		{{formError}}
+      </div>
+    </div>
+  </form>
+  
+  <p class="loginhere">
+                    Already have an account ?<a routerLink="/user/login" class="loginhere-link"> Log in</a>
+                </p>
+</div>
